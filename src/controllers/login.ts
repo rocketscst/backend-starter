@@ -43,7 +43,7 @@ export default class LoginController {
     const userData = await getGoogleUser(accessToken)
     const user = await findOrCreateUser({
       email: userData.email,
-      name: userData.name,
+      name: userData.name ?? userData.email.split('@')[0] ?? 'Anonymous', //added check for name
     })
     return user.strippedAndFilled({ withExtra: true })
   }

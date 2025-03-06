@@ -6,6 +6,7 @@ import { Server } from 'http'
 import { bootstrapControllers } from 'amala'
 import { resolve } from 'path'
 import env from '@/helpers/env'
+import MessagesController from '@/controllers/MessagesController'
 
 const app = new Koa()
 
@@ -14,7 +15,7 @@ export default async function () {
   await bootstrapControllers({
     app,
     basePath: '/',
-    controllers: [resolve(__dirname, '../controllers/*')],
+    controllers: [resolve(__dirname, '../controllers/*'), MessagesController],
     disableVersioning: true,
     router,
   })
